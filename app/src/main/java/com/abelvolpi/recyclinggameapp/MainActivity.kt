@@ -3,7 +3,6 @@ package com.abelvolpi.recyclinggameapp
 import android.content.ClipData
 import android.content.ClipDescription
 import android.os.Bundle
-import android.util.Log
 import android.view.DragEvent
 import android.view.View
 import android.view.View.DragShadowBuilder
@@ -26,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setUpDragAndDropView()
         setUpDragAndDropListeners()
+        setupNewRandomTrashItem()
     }
 
     private fun setUpDragAndDropView() {
@@ -87,6 +87,9 @@ class MainActivity : AppCompatActivity() {
                     val id = view.tag
                     Toast.makeText(this, "id: $id // itemType: $dragData", Toast.LENGTH_LONG).show()
 
+                    setupNewRandomTrashItem()
+
+
                     // Turn off color tints.
                     (view as? ImageView)?.clearColorFilter()
 
@@ -98,24 +101,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 DragEvent.ACTION_DRAG_ENDED -> {
-                    when (dragEvent.result) {
-                        true ->
-                            Toast.makeText(this, "The drop was handled.", Toast.LENGTH_LONG)
-
-                        else ->
-                            Toast.makeText(this, "The drop didn't work.", Toast.LENGTH_LONG)
-                    }.show()
-
-                    // Return true. The value is ignored.
+                    trashItem.visibility = View.VISIBLE
                     true
                 }
 
                 else -> {
-                    // An unknown action type is received.
-                    Log.e(
-                        "DragDrop Example",
-                        "Unknown action type received by View.OnDragListener."
-                    )
                     false
                 }
             }
@@ -141,4 +131,22 @@ class MainActivity : AppCompatActivity() {
         anim.fillAfter = true
     }
 
+    private fun setupNewRandomTrashItem() {
+        val trashName = Trash.values().toList().shuffled().first().name
+        val trashImageResource = setUpTrashImageView(trashName)
+
+        trashItem.tag = trashName
+        trashItem.setImageResource(trashImageResource)
+    }
+
+    private fun setUpTrashImageView(trashName: String): Int {
+        return when (trashName) {
+            Trash.PLASTIC.name -> R.drawable.gallon
+            Trash.PAPER.name -> R.drawable.paper
+            Trash.METAL.name -> R.drawable.metal
+            Trash.GLASS.name -> R.drawable.glass
+            Trash.ORGANIC.name -> R.drawable.apple
+            else -> -1
+        }
+    }
 }
