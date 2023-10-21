@@ -45,35 +45,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpDragAndDropListeners() {
         val listener = View.OnDragListener { view, dragEvent ->
+
             when (dragEvent.action) {
-                // Return true or false of DragEvent.getResult().
-                DragEvent.ACTION_DRAG_STARTED -> {
-                    // Determine whether this View can accept the dragged data.
-                    if (dragEvent.clipDescription.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
-                        // Invalidate the view to force a redraw in the new tint.
-                        view.invalidate()
-
-                        // Return true to indicate that the View can accept the dragged
-                        // data.
-                        true
-                    } else {
-                        // Return false to indicate that, during the current drag and
-                        // drop operation, this View doesn't receive events again until
-                        // ACTION_DRAG_ENDED is sent.
-                        false
-                    }
-                }
-
                 DragEvent.ACTION_DRAG_ENTERED -> {
                     itemFocused(view)
-                    true
                 }
-
-                DragEvent.ACTION_DRAG_LOCATION -> true
 
                 DragEvent.ACTION_DRAG_EXITED -> {
                     itemUnfocused(view)
-                    true
                 }
 
                 DragEvent.ACTION_DROP -> {
@@ -89,26 +68,16 @@ class MainActivity : AppCompatActivity() {
 
                     setupNewRandomTrashItem()
 
-
-                    // Turn off color tints.
                     (view as? ImageView)?.clearColorFilter()
 
-                    // Invalidate the view to force a redraw.
                     view.invalidate()
-
-
-                    true
                 }
 
                 DragEvent.ACTION_DRAG_ENDED -> {
                     trashItem.visibility = View.VISIBLE
-                    true
-                }
-
-                else -> {
-                    false
                 }
             }
+            true
         }
         recyclePlastic.setOnDragListener(listener)
         recyclePaper.setOnDragListener(listener)
