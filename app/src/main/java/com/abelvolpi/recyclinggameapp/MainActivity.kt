@@ -61,10 +61,11 @@ class MainActivity : AppCompatActivity() {
                     val item: ClipData.Item = dragEvent.clipData.getItemAt(0)
 
                     // Get the text data from the item.
-                    val dragData = item.text
+                    val dragData = item.text.toString()
 
-                    val id = view.tag
-                    Toast.makeText(this, "id: $id // itemType: $dragData", Toast.LENGTH_LONG).show()
+                    val id = view.tag.toString()
+
+                    checkCorrectRecyclingBin(id, dragData)
 
                     setupNewRandomTrashItem()
 

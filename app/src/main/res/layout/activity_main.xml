@@ -28,7 +28,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/recycle_plastic"
-                android:tag="plastic" />
+                android:tag="PLASTIC" />
 
             <ImageView
                 android:id="@+id/recycle_paper"
@@ -36,14 +36,14 @@
                 android:layout_height="100dp"
                 android:layout_marginHorizontal="20dp"
                 android:src="@drawable/recycle_paper"
-                android:tag="paper" />
+                android:tag="PAPER" />
 
             <ImageView
                 android:id="@+id/recycle_metal"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/recycle_metal"
-                android:tag="metal" />
+                android:tag="METAL" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -59,14 +59,14 @@
                 android:layout_height="100dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/recycle_glass"
-                android:tag="glass" />
+                android:tag="GLASS" />
 
             <ImageView
                 android:id="@+id/recycle_organic"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/recycle_organic"
-                android:tag="organic" />
+                android:tag="ORGANIC" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -84,7 +84,6 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/gallon"
-        android:tag="glass"
         app:layout_constraintBottom_toBottomOf="parent "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
