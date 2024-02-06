@@ -8,7 +8,7 @@ import android.view.View
 import android.view.View.DragShadowBuilder
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private val recycleMetal: ImageView by lazy { findViewById(R.id.recycle_metal) }
     private val recycleGlass: ImageView by lazy { findViewById(R.id.recycle_glass) }
     private val recycleOrganic: ImageView by lazy { findViewById(R.id.recycle_organic) }
+    private val counterText: TextView by lazy { findViewById(R.id.counter_text) }
+    private var counter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,6 +119,13 @@ class MainActivity : AppCompatActivity() {
             Trash.GLASS.name -> R.drawable.glass
             Trash.ORGANIC.name -> R.drawable.apple
             else -> -1
+        }
+    }
+
+    private fun checkCorrectRecyclingBin(trash: String, recycleBin: String) {
+        if (trash == recycleBin) {
+            counter++
+            counterText.text = counter.toString()
         }
     }
 }
